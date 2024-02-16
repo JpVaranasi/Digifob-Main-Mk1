@@ -1,0 +1,75 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'main/pages/reserve/reserve.css' %}">
+        <title>Reserve</title>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const itemDropdown = document.getElementById('available-items');
+                const priceField = document.getElementById('item-price');
+                const itemPrices = {
+                    none: 0.00,
+                    rice: 5.00,
+                    burger: 8.00,
+                    water: 1.50,
+                    fruit: 3.00
+                };
+                itemDropdown.addEventListener('change', function () {
+                    const selectedItem = itemDropdown.value;
+                    priceField.value = "£" + itemPrices[selectedItem].toFixed(2);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="nav-back"><a href="#" onclick="event.preventDefault(); window.history.back();"">←</a></div>
+        <center>
+        <p class="title">Reserve</p>
+        </center>
+        <div class="container">
+            <div class="row">
+                <select class="available-items" id="available-items">
+                    <option value="none">None</option>
+                    <option value="rice">Rice</option>
+                    <option value="burger">Burger</option>
+                    <option value="water">Water</option>
+                    <option value="fruit">Fruit</option>
+                </select>
+                <input type="text" class="item-price" placeholder="Price" readonly id="item-price">
+                <select class="available-time-slots">
+                    <option value="select">Select</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:03">12:03</option>
+                    <option value="12:06">12:06</option>
+                    <option value="12:09">12:09</option>
+                    <option value="12:12">12:12</option>
+                    <option value="12:15">12:15</option>
+                    <option value="12:18">12:18</option>
+                    <option value="12:21">12:21</option>
+                    <option value="12:24">12:24</option>
+                    <option value="12:27">12:27</option>
+                    <option value="12:30">12:30</option>
+                    <option value="12:33">12:33</option>
+                    <option value="12:36">12:36</option>
+                    <option value="12:39">12:39</option>
+                    <option value="12:42">12:42</option>
+                    <option value="12:45">12:45</option>
+                    <option value="12:48">12:48</option>
+                    <option value="12:51">13:51</option>
+                    <option value="12:54">12:54</option>
+                    <option value="12:57">12:57</option>
+                    <option value="13:00">13:00</option>
+
+                </select>
+                <button class="delete-row-btn">Delete</button>
+            </div>
+            <div class="row2">
+                <button id="add-row-btn" class="btn-1 row2">Add More (Not available in prototype version)</button>
+                <button id="submit-btn" disabled class="row2">Submit</button>
+            </div>
+        </div> 
+
+    </body>
+</html>

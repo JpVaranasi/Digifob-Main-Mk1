@@ -1,0 +1,33 @@
+{% load static %}
+{% load tags %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'main/pages/menu_S/menu_S.css' %}">
+        <title>Menu - Schools</title>
+    </head>
+    <body>
+        <div class="nav-back"><a href="#" onclick="event.preventDefault(); window.history.back();">←</a></div>
+        <center>
+        <p class="title">Menu - Schools</p>
+        </center>
+        <div class="container">
+            <div class="container">
+                {% block content %}
+                {% get_menu as menu %}
+                {% for item in menu %}
+                <div class="col">
+                    <div class="row">
+                        <div class="row2">{{ item.item_name }}</div>
+                        <div class="row2">{{ item.price }}</div>
+                        <div class="row2">{{ item.ingredients }}</div>
+                        <div class="row2">{{ item.dietary_information}}</div>
+                        <div class="row2">edit</div>
+                        <div class="row2">delete</div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endblock %}
+    </div>
+        </div>
+    </body>
+</html>

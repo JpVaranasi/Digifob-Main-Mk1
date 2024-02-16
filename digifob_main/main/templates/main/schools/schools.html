@@ -1,0 +1,79 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'main/schools/schools.css' %}">
+        <title>School's Hub</title>
+    </head>
+    <body>
+        <div class="nav-back"><a href= "{% url 'index' %}">←</a></div>
+        <center>
+        <p class="title">School's Hub</p>
+        </center>
+        <div class="container">
+            <div class="nav row">
+                <div class="box-1 row">
+                    <div class="col">
+                        <div class="box-1-title"><a href="{% url 'stats' %}">Statistics</a></div>
+                        <div class="box-1-desc">
+                            <p>A one-way stop to manage your child's account.</p>
+                        </div>
+                        <center>
+                        <div class="ext-container">
+                            <div class="circle"></div>
+                            <a href="{% url 'stats' %}">
+                            <div class="arrows">
+                                <span class="ext_arrows arrow_one"></span>
+                                <span class="ext_arrows arrow_two"></span>
+                                <span class="ext_arrows arrow_three"></span>
+                            </div>
+                            </a>
+                        </div>
+                        </center>
+                    </div>
+                </div>
+                </a>
+                <div class="box-2 row">
+                    <div class="col">
+                        <div class="box-2-title"><a href="{% url 'sDetails' %}">Student Details</a></div>
+                        <div class="box-2-desc">
+                            <p>A complete access to your account.</p>
+                        </div>
+                        <center>
+                        <div class="ext-container">
+                            <div class="circle"></div>
+                            <a href="{% url 'sDetails' %}">
+                            <div class="arrows">
+                                <span class="ext_arrows arrow_one"></span>
+                                <span class="ext_arrows arrow_two"></span>
+                                <span class="ext_arrows arrow_three"></span>
+                            </div>
+                            </a>
+                        </div>
+                        </center>
+                    </div>
+                </div>
+                <div class="box-3 row">
+                    <div class="col">
+                        <div class="box-3-title"><a href="{% url 'menu_S' %}">Menu(S)</a></div>
+                        <div class="box-3-desc">
+                            <p>A final destination to manage the whole system.</p>
+                        </div>
+                        <center>
+                        <div class="ext-container">
+                            <div class="circle"></div>
+                            <a href="{% url 'menu_S' %}">
+                            <div class="arrows">
+                                <span class="ext_arrows arrow_one"></span>
+                                <span class="ext_arrows arrow_two"></span>
+                                <span class="ext_arrows arrow_three"></span>
+                            </div>
+                            </a>
+                        </div>
+                        </center>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </body>
+</html>

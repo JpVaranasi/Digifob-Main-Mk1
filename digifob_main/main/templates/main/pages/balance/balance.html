@@ -1,0 +1,59 @@
+{% load static %}
+{% load tags %}
+<html>
+    <head>
+        <title>Balance</title>
+        <link rel="stylesheet" href="{% static 'main/pages/balance/balance.css' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    </head>
+    <body>
+        <div class="nav-back"><a href="#" onclick="event.preventDefault(); window.history.back();">←</a></div>
+        <center>
+        <p class="title">Balance</p>
+        </center>
+        <div class="container">
+            <div class="row">
+                <div class="row2">
+                    <p>Balance: </p>
+                </div>
+                <div class="row2">
+                    £{{ balance }}
+                </div>
+            </div>
+            <p class="trsn-hstry">Transaction history</p>
+            <div class="row">
+                <div class="row3">
+                    <p>
+
+                        {% for i in dates %}
+                        <div class="col">
+                            {{ i }}
+                        </div>
+                            {% endfor %}
+                    </p>
+                </div>
+                <div class="row3">
+                    <p>
+                        {% for i in items %}
+                                             
+                            <div class="col">
+                                {{ i|join:" , " }}
+                            </div>
+                         
+                                {% endfor %}
+                    </p>
+                </div>
+                <div class="row3">
+                    <p>
+                        {% for i in price %}
+                            <div class="col">
+                                £{{ i }}
+                            </div>
+                        {% endfor %}
+                    </p>
+                </div>
+            </div>
+        </div>    
+    </body>
+</html>

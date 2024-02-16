@@ -1,0 +1,52 @@
+{% load static %}
+
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="{% static 'main/index/style.css' %}">
+</head>
+<body>
+<center>
+<p class="title">DigiFob</p>
+</center>
+<div class="container">
+<div class="nav ">
+    <div class="box">
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <h2>Login</h2>
+            <div class="inputBox">
+                <input type="Email" required = "required" name = 'email'>
+                <span>Email</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" required = "required" name = 'password'>
+                <span>Password</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <select name="role">
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="parent">Parent</option>
+                </select>
+            </div>
+            <div class="links">
+                <a href="#">Forgot Password</a>
+                <a href="{% url "register" %}">Register</a>
+            </div>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <input type="submit" value="Login">
+        </form>
+    </div> 
+</div>  
+</div>
+</body>
+</html>

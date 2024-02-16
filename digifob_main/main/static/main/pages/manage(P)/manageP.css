@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&family=Shadows+Into+Light&display=swap');
+
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+body{
+    font-size: 0.85rem;
+    background-color: #16213E;
+    font-family: 'Anonymous Pro',monospace;
+    color: white;
+}

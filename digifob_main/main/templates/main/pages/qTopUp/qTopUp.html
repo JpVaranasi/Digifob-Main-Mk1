@@ -1,0 +1,47 @@
+{% load static %}
+{% load tags %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'main/pages/qTopUp/qTopUp.css' %}">
+        <title>Quick Top-Up</title>
+        <script src="{% static 'main/pages/qTopUp/qTopUp.js' %}"></script>
+    </head>
+    <body>
+        <div class="nav-back"><a href="{% url 'parents' %}">←</a></div>
+        <center>
+        <p class="title">Quick Top-Up</p>
+        </center>
+        <div class="container">
+            <div class="row">
+                <div class="row2">
+                    <p>Balance: </p>
+                </div>
+                <div class="row2">
+                    <p> {% block content %}
+                        {% get_balance as bal %}
+                        {% for price in bal %}
+                         <p>£{{ price.balance }}</p>
+                        {% endfor %}
+                        {% endblock %}
+                    </p>
+                </div>
+            </div>
+            <div class="row3">
+                <form action="/update_amount/" method="post">
+                    {% csrf_token %}
+                    <div class="row3">
+                    <label for="money">Top Up:</label>
+                    
+                    <div class="money-input">
+                        <span class="currency-symbol">£</span>
+                        <input type="number" id="money" name="money" placeholder="0.00" autocomplete="off" step="0.01" pattern="[0-9]*">
+                        <script src="{% static 'main/pages/qTopUp/qTopUp.js' %}"></script>
+                    </div>
+                    </div>
+                    
+                    <button type="submit">Confirm</button>
+                 </form>
+                 
+        </div>
+    </body>
+</html>

@@ -1,0 +1,117 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>Statistics</title>
+        <link rel="stylesheet" href="{% static 'main/pages/stats/stats.css' %}">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+      <div class="nav-back"><a href="#" onclick="event.preventDefault(); window.history.back();">←</a></div>
+       <center>
+       <p class="title">Statistics</p>
+       <p style="color: red;">In the prototype the data shown is randomised.</p>
+       </center>
+       Time period : 
+        <select id="time-period">
+            <option value="2weeks">Last 2 Weeks</option>
+            <option value="1month">Last Month</option>
+            <option value="3months">Last 3 Months</option>
+            <option value="6months">Last 6 Months</option>
+            <option value="1year">Last Year</option>
+           </select>
+           <div class="graph-container">
+            <canvas id="transaction-history"></canvas>
+           </div>
+           
+           <div class="graph-container">
+            <canvas id="most-sold-items"></canvas>
+           </div>
+           
+          
+           <script>
+            var transactionHistoryChart, mostSoldItemsChart;
+          
+            function generateRandomData(length) {
+                var data = [];
+                for (var i = 0; i < length; i++) {
+                    var value = Math.floor(Math.random() * 100);
+                    data.push(value);
+                }
+                return data;
+            }
+          
+            var foodItems = ['Rice', 'Burger', 'Water', 'Pizza', 'Chicken', 'Apple', 'Orange', 'Banana', 'Milk', 'Egg'];
+            var salesData = {};
+            foodItems.forEach(function(item) {
+                salesData[item] = [];
+            });
+          
+            document.getElementById('time-period').addEventListener('change', function() {
+                // Clear the salesData object
+                for (var item in salesData) {
+                    delete salesData[item];
+                }
+          
+                // Generate new sales data for the selected time period
+                foodItems.forEach(function(item) {
+                    salesData[item] = generateRandomData(12);
+                });
+          
+                // Update the transaction history graph
+                transactionHistoryChart.data.datasets[0].data = generateRandomData(12);
+                transactionHistoryChart.update();
+          
+                // Update the most sold items graph
+                mostSoldItemsChart.data.datasets[0].data = Object.values(salesData);
+                mostSoldItemsChart.update();
+            });
+          
+            function updateGraphs() {
+                var ctx1 = document.getElementById('transaction-history').getContext('2d');
+                transactionHistoryChart = new Chart(ctx1, {
+                    type: 'line',
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    data: {
+                      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11', 'Week 12'],
+                      datasets: [{
+                        label: 'Transaction History',
+                        data: generateRandomData(12),
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                      }]
+                    }
+                });
+          
+                var ctx2 = document.getElementById('most-sold-items').getContext('2d');
+                mostSoldItemsChart = new Chart(ctx2, {
+                    type: 'bar',
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    data: {
+                      labels: foodItems,
+                      datasets: [{
+                        label: 'Most Sold Items',
+                        data: Object.values(salesData),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgb(75, 192, 192)',
+                        borderWidth: 1
+                      }]
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    }
+                });
+            }
+          
+            // Call updateGraphs initially to draw the charts
+            updateGraphs();
+           </script>
+         </body>
+</html>

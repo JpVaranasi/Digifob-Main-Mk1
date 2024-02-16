@@ -1,0 +1,122 @@
+{% load static %}
+{% load tags %}
+<html>
+   <head>
+       <title>Student Details</title>
+       <link rel="stylesheet" href = "{% static 'main/pages/sDetails/sDetails.css' %}">
+       <script src="{% static 'main/pages/sDetails/sDetails.js' %}"></script>
+   </head>
+   <body>
+       <div class="nav-back"><a href="#" onclick="event.preventDefault(); window.history.back();">←</a></div>
+       <center>
+       <p class="title">Student Details</p>
+       <p style="color: red;">In the prototype only year 11 is functional.</p>
+       </center>
+       <div class="container">
+            <div class="row3">
+                <div class="row2">
+                    <div class="col">
+                        <div class="row" id="year-selector">
+                            <label for="select-year">Select Year:</label>
+                            <select id="select-year" onchange="updateFormDropdown()">
+                                <option disabled selected>None</option>
+                                <option value="11">Year 11</option>
+                                <option value="10">Year 10</option>
+                                <option value="9">Year 9</option>
+                                <option value="8">Year 8</option>
+                                <option value="7">Year 7</option>
+                            </select>
+                        </div>
+                        <div class="row " id="form-selector">
+                            <label for="select-form">Select Form:</label>
+                            <select id="select-form" onchange="updateStudentDropdown()">
+                                <option disabled selected>None</option>
+                            </select>
+                        </div>
+                        <div class="row" id="student-selector">
+                            <label for="student-input">Search for Student:</label>
+                            <input type="text" id="student-input" list="student-options" oninput="filterStudents()" style="width:100px;">
+                            <datalist id="student-options"></datalist>
+                        </div>
+                        <div class="row" id="dob-selector">
+                                <label for="dob">DOB:</label>
+                                <input type="date" name="dob" id="dob">
+                        </div>
+                    </div>
+                </div>
+                <div class="row_container">
+                    <div class="row3">
+                        <div class="picture" id="picture">
+                            <img src="{% static 'main/pages/sDetails/prsn_icn.png' %}" alt="person" width="100%">
+                        </div>
+                        <div class="s_details-container" id = "s_details-container">
+                            <div id="s_details">
+                                {% get_sDetails as details %}
+                                {% for i in details%}
+                                    <p>Name : {{ i.name  }}</p>
+                                    <p>Gender : {{ i.gender }}</p>
+                                    <p>Email : {{ i.email }}</p>
+                                    {% get_balance as bal %}
+                                    {% for price in bal %}
+                                    <p>Balance : £{{ price.balance }}</p>
+                                    {% endfor %}
+                                    <p>Parent : {{ i.parent.parent_1_name }}</p>
+                                    <p>Email : {{ i.parent.parent_1_email }}</p>
+                                    <p>Phone : {{ i.parent.parent_1_phone }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    var year = document.getElementById('select-year');
+                    var form = document.getElementById('select-form');
+                    var student_input = document.getElementById('student-input')
+                    var dob = document.getElementById('dob');
+                    div_form = document.getElementById('form-selector')
+                    div_st_inp = document.getElementById('student-selector')
+                    div_dob = document.getElementById('dob-selector')
+                    var div1 = document.getElementById('picture');
+                    var div2 = document.getElementById('s_details-container');
+                    year.addEventListener('change', function() {
+                    if (this.value) {
+                        div_form.style.display = 'block';
+                        div_form.style.display = 'block';
+                    } else {
+                        div_form.style.display = 'none';
+                        div_form.style.display = 'none';
+                    }
+                    });
+                    form.addEventListener('change', function() {
+                    if (this.value) {
+                        div_st_inp.style.display = 'block';
+                        div_st_inp.style.display = 'block';
+                    } else {
+                        div_st_inp.style.display = 'none';
+                        div_st_inp.style.display = 'none';
+                    }
+                    });
+                    student_input.addEventListener('change', function() {
+                    if (this.value) {
+                        div_dob.style.display = 'block';
+                        div_dob.style.display = 'block';
+                    } else {
+                        div_dob.style.display = 'none';
+                        div_dob.style.display = 'none';
+                    }
+                    });
+                    dob.addEventListener('change', function() {
+                    if (this.value) {
+                        div1.style.display = 'block';
+                        div2.style.display = 'block';
+                    } else {
+                        div1.style.display = 'none';
+                        div2.style.display = 'none';
+                    }
+                    });
+                </script>
+            </div>
+        </div>
+   </body>
+
+</html>

@@ -1,0 +1,49 @@
+{% load static  %}
+{% load tags %}
+<html>
+    <head>
+        <link rel="stylesheet" href = "{% static "main/register/register.css" %}">
+        <title>Register</title>
+    </head>
+    <body>
+        <center>
+            <p class="title">DigiFob</p>
+        </center>
+        <div class="container">
+            <div class="nav ">
+                <div class="box">
+                    <form method="POST" action="{% url 'register_1' %}">
+                        {% csrf_token %}
+                        <h2>Register</h2>
+                        <div class="inputBox">
+                            <input type="text" required="required" name="name">
+                            <span>Name</span>
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                            <input type="Email" required="required" name="email">
+                            <span>Email</span>
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                            <input type="password" required="required" name="password">
+                            <span>Password</span>
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                            <select name="role">
+                                <option value="student">Student</option>
+                                <option value="teacher">Teacher</option>
+                            </select>
+                        </div>
+                        <div class="links">
+                            <a href="#">Forgot Password</a>
+                            <a href="{% url "index" %}">Login</a>
+                        </div>
+                        <input type="submit" value="Register">
+                    </form>                    
+                </div> 
+            </div>  
+        </div>
+    </body>
+</html>

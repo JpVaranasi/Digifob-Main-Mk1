@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&family=Shadows+Into+Light&display=swap');
+
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+body{
+    font-size: 0.85rem;
+    background-color: #16213E;
+    font-family: 'Anonymous Pro',monospace;
+    color: white;
+}
+.container{
+    width: 85%;
+    margin: 0 auto;
+    background-color: #0F3460;
+    height: auto;
+    min-height: 65%;
+    border-radius: 30px;
+}
+.title{
+    width: fit-content;
+    margin: 50px auto;
+    font-size: 3rem;
+    position: relative;
+    display: inline-block;
+    background-color: transparent;
+}
+.title::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px; /* Set the thickness of the underline */
+    bottom: 0;
+    left: 0;
+    bottom: -5px;
+    background-color: #fff; /* Set the color of the underline */
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.6s ease;
+    border-radius: 30px;
+}
+.title:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.nav-back{
+    font-size: 4rem;
+    position: absolute;
+    top: 45px;
+    left: 20px;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.row2{
+    margin: 20px;
+    font-size: 2rem;
+}
+label {
+    margin-bottom: 8px;
+}
+.money-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    width: 85px;
+    margin-left: 20px;
+    }
+.currency-symbol {
+    margin-right: 8px;
+}
+input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+    text-align: right;
+}
+.row3{
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    color: white;
+    width: 150px;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    background-color: #16213E;
+    border-radius: 30px;
+    border: none;
+
+}
+button:hover{
+    background-color: white;
+    color: #16213E;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+
+
