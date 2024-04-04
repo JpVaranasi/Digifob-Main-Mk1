@@ -15,13 +15,13 @@ class Parent(models.Model):
     password1 = models.CharField(max_length = 50, blank = False , null = False)
     parent_1_phone = models.CharField(max_length = 10, blank = False , null = False)
     parent_1_address = models.CharField(max_length = 100 , null = False, blank = False)
-    parent_2_name = models.CharField(max_length = 50 , null = False, blank = False)
-    parent_2_email = models.EmailField(validators = [EmailValidator] , null = False, blank = False)
-    password2 = models.CharField(max_length = 50, blank = False, null = False)
+    parent_2_name = models.CharField(max_length = 50 , null = True, blank = True)
+    parent_2_email = models.EmailField(validators = [EmailValidator] , null = True, blank = True)
+    password2 = models.CharField(max_length = 50, blank = True, null = True)
     parent_2_phone = models.CharField(
         max_length = 13,
-        blank = False,
-        null = False,
+        blank = True,
+        null = True,
         validators = [
             RegexValidator(
                 regex= r'^\+44\d{10}$',
@@ -29,7 +29,7 @@ class Parent(models.Model):
                 )
             ]
         )
-    parent_2_address = models.CharField(max_length = 100 , null = False, blank = False)   
+    parent_2_address = models.CharField(max_length = 100 , null = True, blank = True)   
     def __str__(self):
         return self.parent_1_name
 class School(models.Model):
@@ -62,7 +62,6 @@ class Teacher(models.Model):
 
 class Student(models.Model):
     student_id = models.AutoField(primary_key=True)
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
     name = models.CharField(max_length = 50 , null = False, blank = False)
     dob = models.DateField(null = False, blank = False)
     gender_choices = [('M','Male'),("F","Female"),("O","Other")]
@@ -83,6 +82,7 @@ class Student(models.Model):
     address = models.CharField(max_length = 100 , null = False, blank = False)
     parent = models.ForeignKey(Parent, on_delete = models.CASCADE, related_name = "students")
     school = models.ForeignKey(School, on_delete=models.CASCADE)
+    reserves = models.CharField(max_length = 500 , null = True, blank = True)
     def __str__(self):
         return self.name
 class YearForm(models.Model):   

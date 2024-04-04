@@ -4,43 +4,178 @@
     <head>
         <link rel="stylesheet" href = "{% static "main/register/register.css" %}">
         <title>Register</title>
+        <script>
+            function toggleRoleFields() {
+                var role = document.getElementById('role').value;
+                var studentFields = document.getElementById('student');
+                var parentFields = document.getElementById('parent');
+                var teacherFields = document.getElementById('teacher');
+                var links = document.getElementById('links');
+                var submit = document.getElementById('submit');
+                if (role === 'student') {
+                        studentFields.style.display = 'block';
+                        teacherFields.style.display = 'none';
+                        parentFields.style.display = 'none';
+                        links.style.display = 'block';
+                        submit.style.display = 'block';
+                    } else if (role === 'teacher') {
+                        studentFields.style.display = 'none';
+                        teacherFields.style.display = 'block';
+                        parentFields.style.display = 'none';
+                        links.style.display = 'block';
+                        submit.style.display = 'block';
+                        
+                    } else if (role === 'parent') {
+                        studentFields.style.display = 'none';
+                        teacherFields.style.display = 'none';
+                        parentFields.style.display = 'block';
+                        links.style.display = 'block';
+                        submit.style.display = 'block';
+                    }
+                }
+        </script>
     </head>
     <body>
+        <div class="nav-back"><a href="#" onclick="event.preventDefault(); window.history.back();">←</a></div>
         <center>
             <p class="title">DigiFob</p>
         </center>
         <div class="container">
             <div class="nav ">
                 <div class="box">
-                    <form method="POST" action="{% url 'register_1' %}">
+                    <form method="POST" action="{% url 'register_1' %}" >
                         {% csrf_token %}
                         <h2>Register</h2>
                         <div class="inputBox">
-                            <input type="text" required="required" name="name">
-                            <span>Name</span>
-                            <i></i>
-                        </div>
-                        <div class="inputBox">
-                            <input type="Email" required="required" name="email">
-                            <span>Email</span>
-                            <i></i>
-                        </div>
-                        <div class="inputBox">
-                            <input type="password" required="required" name="password">
-                            <span>Password</span>
-                            <i></i>
-                        </div>
-                        <div class="inputBox">
-                            <select name="role">
+                            <p>Role:</p>
+                            <select name="role" id="role" onchange="toggleRoleFields()">
+                                <option value="none">Select</option>
                                 <option value="student">Student</option>
                                 <option value="teacher">Teacher</option>
+                                <option value="parent">Parent</option>
                             </select>
                         </div>
-                        <div class="links">
+                            <div id="student"style="display: none;">
+                                <div class="inputBox">
+                                    <input type="text" required="required" name="s_name">
+                                    <span>Name</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="Email" required="required" name="s_email">
+                                    <span>Email</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="password" required="required" name="s_password">
+                                    <span>Password</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="date" required="required" name="s_dob">
+                                    <span>DOB:</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="text" required="required" name="s_gender">
+                                    <span>Gender(M/F)</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="phone2numeric" required="required" name="s_number">
+                                    <span>Phone:</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="text" required="required" name="s_address">
+                                    <span>Address:</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="email" required="required" name="p_email">
+                                    <span>Parent Email:</span>
+                                    <i></i>
+                                </div>
+                            </div>
+                            <div id="parent"style="display: none;">
+                                <div class="inputBox">
+                                    <input type="text" required="required" name="p1name">
+                                    <span>Parent 1 name:</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="Email" required="required" name="p1email">
+                                    <span>Parent 1 Email</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="password" required="required" name="p1password">
+                                    <span>Password</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="phone2numeric" required="required" name="p1number">
+                                    <span>Parent 1 Phone:</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="text" required="required" name="p1address">
+                                    <span>Parent 1 Address:</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="text"required = 'none' name="p2name">
+                                    <span>Parent 2 name:</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="Email" required = 'none' name="p2email">
+                                    <span>Parent 2 Email</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="password"required = 'none' name="p2password">
+                                    <span>Password</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="phone2numeric" required = 'none' name="p2number">
+                                    <span>Parent 2 Phone:</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="text" required = 'none' name="p2address">
+                                    <span>Parent 2 Address:</span>
+                                    <i></i>
+                                </div>
+                            </div>
+                            <div id="teacher"style="display: none;">
+                                <div class="inputBox">
+                                    <input type="text" required="required" name="t_name">
+                                    <span>Name:</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="Email" required="required" name="t_email">
+                                    <span>Email</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="password" required="required" name="t_password">
+                                    <span>Password</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="phone2numeric" required="required" name="t_number">
+                                    <span>Phone:</span>
+                                    <i></i>
+                                </div>
+                            </div>
+                        <div class="links" id = 'links' style="display: none;">
                             <a href="#">Forgot Password</a>
                             <a href="{% url "index" %}">Login</a>
                         </div>
-                        <input type="submit" value="Register">
+                        <input type="submit" value="Register" id = 'submit' style="display: none;">
                     </form>                    
                 </div> 
             </div>  

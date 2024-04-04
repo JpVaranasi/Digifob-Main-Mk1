@@ -130,3 +130,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ALLOWED_HOSTS = ['f4af-82-15-218-41.ngrok-free.app' , 'https://localhost' , '127.0.0.1']
+
+CSRF_TRUSTED_ORIGINS = ['https://f4af-82-15-218-41.ngrok-free.app']

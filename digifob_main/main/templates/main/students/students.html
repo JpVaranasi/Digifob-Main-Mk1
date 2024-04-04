@@ -17,10 +17,18 @@
                         <p>Email : {{ student.email }}</p>
                 </div>
                 <div class="qr">
-                    <img src="data:image/png;base64,{% view_data student.student_id %}" alt="QR Code" width = 100px>
+                    <a href="{% url 'payNow' %}">
+                        <img src="data:image/png;base64,{% view_data student.student_id %}" alt="QR Code" width = 100px>
+                    </a>
                 </div>
             </div>
-              
+        <center>
+            <a href="{% url 'payNow' %}">
+                <div class="pay-now">
+                    <p>Pay Now</p>
+                </div>
+            </a>
+        </center>   
         </div>
         <div class="container">
             <div class="nav row">
@@ -85,6 +93,7 @@
                         </center>
                     </div>
                 </div>
+                
             </div>  
         </div>
     </body>

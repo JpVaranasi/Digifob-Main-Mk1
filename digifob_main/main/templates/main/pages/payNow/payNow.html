@@ -1,0 +1,30 @@
+{% load static %}
+{% load tags %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href = "{% static "main/pages/payNow/payNow.css" %}">
+        <title>Pay Now</title>
+    </head>
+    <body>
+        <div class="nav-back"><a href="#" onclick="event.preventDefault(); window.history.back();">←</a></div>
+        <center>
+            <p class="title">DigiFob</p>
+        </center>
+        <div class="data">
+            <div class="row">
+                <p>Name : {{ student.name }}</p>
+                <p>Email : {{ student.email }}</p>
+                <p>Balance : £{{student.balance.balance}}</p>
+            </div>
+        </div>
+        <center>
+            <div class="container">
+                <div class="img-container">
+                    <img src="data:image/png;base64,{% view_data student.student_id %}" alt="QR Code" width = 90%>
+                </div>
+            </div>
+        </center>
+        
+    </body>
+</html>

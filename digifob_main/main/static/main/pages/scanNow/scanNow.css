@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&family=Shadows+Into+Light&display=swap');
+
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+body{
+    font-size: 0.85rem;
+    background-color: #16213E;
+    font-family: 'Anonymous Pro',monospace;
+    color: white;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.nav-back{
+    font-size: 4rem;
+    position: absolute;
+    top: 45px;
+    left: 20px;
+}
+.title{
+    width: fit-content;
+    margin: 50px auto;
+    font-size: 3rem;
+    position: relative;
+    display: inline-block;
+    background-color: transparent;
+}
+.title::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px; /* Set the thickness of the underline */
+    bottom: 0;
+    left: 0;
+    bottom: -5px;
+    background-color: #fff; /* Set the color of the underline */
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.6s ease;
+    border-radius: 30px;
+}
+.title:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#reader {
+    width:600px;
+    margin:  0 auto;
+    border-radius: 30px;
+}
+#result {
+    text-align: center;
+    font-size:   1.5rem;
+}
+#returned-data {
+    margin-top:  20px;
+    text-align: center;
+    font-size:   1.5rem;
+}
+.container{
+    width: 85%;
+    margin: 0 auto;
+    background-color: #0F3460;
+    height: auto;
+    min-height: 65%;
+    border-radius: 30px;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top:50px;
+    margin-bottom: 50px;
+    margin-left: 50px
+}
+.row + .row{
+    margin-top: 25px;
+}
+.row2{
+    flex: 1;
+    margin: 10px;
+}
+
+button{
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #0F3460;
+    border: none;
+    color:white;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+#menu{
+    display: none;
+}
+#cart{
+    display: none;
+}
+.add{
+    background-color: #16213E;
+}
+button:hover{
+    color: #0F3460;
+    background-color: white;
+}
+.add:hover{
+    background-color: white;
+    color:#16213E;
+}

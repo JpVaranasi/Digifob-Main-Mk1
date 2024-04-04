@@ -10,22 +10,22 @@
     <body>
         <div class="nav-back"><a href="#" onclick="event.preventDefault(); window.history.back();">←</a></div>
         <center>
-        <p class="title">Menu</p>
+        <p class="title">DigiFob - Menu</p>
         </center>
         <div class="container">
-                    {% block content %}
-                    {% get_menu as menu %}
-                    {% for item in menu %}
-                    <div class="col">
-                        <div class="row">
-                            <div class="row2">{{ item.item_name }}</div>
-                            <div class="row2">{{ item.price }}</div>
-                            <div class="row2">{{ item.ingredients }}</div>
-                            <div class="row2">{{ item.dietary_information}}</div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% endblock %}
+            {% block content %}
+            {% get_menu as menu %}
+            {% for item in menu %}
+            <div class="col">
+                <div class="row">
+                    <div class="row2">{{ item.item_name }}</div>
+                    <div class="row2">{{ item.price }}</div>
+                    <div class="row2">{{ item.ingredients }}</div>
+                    <div class="row2">{{ item.dietary_information}}</div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endblock %}
         </div>
     </body>
 </html>

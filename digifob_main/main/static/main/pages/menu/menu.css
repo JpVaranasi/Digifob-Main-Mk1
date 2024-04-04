@@ -25,7 +25,7 @@ body{
     border-radius: 30px;
 }
 .title{
-    width: min-content;
+    width: fit-content;
     margin: 50px auto;
     font-size: 3rem;
     position: relative;

@@ -1,0 +1,51 @@
+{% load static %}
+{% load tags %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'main/pages/sDetails/sDetailsEditor.css' %}">
+        <title>Menu - Schools</title>
+    </head>
+    <body>
+        <div class="nav-back"><a href="#" onclick="event.preventDefault(); window.history.back();">←</a></div>
+        <center>
+        <p class="title">Digifob</p>
+        </center>
+        <div class="container">
+            <div class="nav ">
+                <div class="box">
+                    <form method="POST" action="{% url 'editDetails' %}">
+                            <div id="student">
+                                
+                                <div class="inputBox">
+                                    <input type="text" required="required" name="s_name">
+                                    <span>Name</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="Email" required="required" name="s_email">
+                                    <span>Email</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="phone2numeric" required="required" name="s_number">
+                                    <span>Phone:</span>
+                                    <i></i>
+                                </div>
+                                <div class="inputBox">
+                                    <input type="text" required="required" name="s_address">
+                                    <span>Address:</span>
+                                    <i></i>
+                                </div>
+                            </div>
+                        <input type="submit" value="Change" id = 'submit'>
+                        <div class="inputBox" style="visibility: hidden;">
+                            <input type="text" required="none" name="id">
+                            <span>ID</span>
+                            <i>{{ student_id }}</i>
+                        </div>
+                    </form>                    
+                </div> 
+            </div>  
+        </div>
+    </body>
+</html>

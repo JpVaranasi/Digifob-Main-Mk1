@@ -1,0 +1,105 @@
+add the ones from transaction 
+
+style.css would not change for the new page
+UnboundLocalError at /login/
+cannot access local variable 'user' where it is not associated with a value
+
+OperationalError at /admin/main/balance/
+no such table: main_balance
+
+AttributeError at /admin/main/yearform/
+'YearForm' object has no attribute 'name'
+
+TemplateDoesNotExist at /login/
+/
+
+Session 1 - This session I focused on getting the login/regsiter page to work and adding a payment system. I first sorted out making the new project using django and setting up all the static files and modifying URLs and setting up the systems for the file. Then I imported all the other templates, statics and template tags from the prototype. After that I started working on the login/register system. As mentioned before the final version will not have the previous index page which provides a bridge to all the hubs in the prototype, but a login/register page that directly transfers the user to the designated hub based on their login.The plan for the next session is to add the scanning functions and the qr code and add the other pages and then make sure the data fetched/altered/written is for the right account.
+
+Session 2 - In this session I got the qr code working and unique for the different users that log in, after that I have made sure data fetched and returned were from the right accounts, throughout this I encountered multiple issues as in the system for this procedure, I first tried having unique urls to each student and showing a specific page using that URL, but soon after development I recognised a major security flaw where anyone could access other account by just modifying the URL , to fix this I tried multiple different procedures but all of them resulted in issues and complications, I ended up switching to a different technique where the login page passes on a request header with the information I needed like the student id. The benefits of this is the URL would be the same for any account but the data inside is different, eliminating the security concerns. After this I worked on the login/registration pages making sure users can register/login properly instead of as before where I just manually added the data. The plan for the next session is to ensure the login/register works perfectly and start adding some of the other pages.      
+
+Session 3 - By now I have fixed all the issues such as the login/regsiter and started adding all the other pages, the pages left now are the stats,reserve and sDetails. MenuS is pending to have the add item feature added. Throughout this session my main aim was to get through the base framework for the pages, I got through all the pages and made sure the data displayed would be right for the account. I added all the other pages with the right data suited to the account logged in. The plan for the next session would be to finally finish the other pages and make sure the hubs shows all the available pages.
+
+IntegrityError at /register_1/
+NOT NULL constraint failed: main_student.dob
+
+register/:9 Uncaught TypeError: Cannot read properties of null (reading 'value')
+    at toggleRoleFields (register/:9:59)
+    at register/:45:17
+
+   
+   
+ white background on fields without required tag
+
+
+
+TypeError at /update_amount/
+join() argument must be str, bytes, or os.PathLike object, not '__proxy__'
+
+The current path, quick-top-up/update_amount, didn’t match any of these.
+
+RuntimeError at /quick-top-up/update_amount
+You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/quick-top-up/update_amount/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+
+AttributeError at /parental_manage/
+type object 'Parent' has no attribute 'object'
+
+MultipleObjectsReturned at /parental_manage/
+get() returned more than one Student -- it returned 3!
+
+TypeError at /parental_manage/
+'Parent' object is not iterable
+
+There was a problem with your fetch operation: Error: Network response was not ok.
+
+DELETE http://127.0.0.1:8000/delete_student/4/ 500 (Internal Server Error)
+deleter @ parental_manage/:59
+onclick @ parental_manage/:45
+
+Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+error with (id = student_id) instead of (student_id = student_id)
+
+issue with wrapping the student display added flex-wrap: wrap; 
+
+
+
+
+
+
+
+
+
+TypeError at /student-details/
+'ManyRelatedManager' object is not iterable ; had to add .all
+
+main.Student.None 
+
+chatgpt
+
+TypeError at /student-details-editor/1/
+sDetailsEditor() got an unexpected keyword argument 'student_id'
+
+TemplateSyntaxError at /reserve/
+Invalid block tag on line 46: 'process_cart'. Did you forget to register or load this tag?
+
+TemplateSyntaxError at /reserve/
+Could not parse the remainder: ' cart {{students.id' from 'process_cart cart {{students.id'
+
+forgot to add @register.simple_tag for the last two errors 
+
+TemplateSyntaxError at /reserve/
+Could not parse the remainder: '{{students.id}}' from '{{students.id}}'; made a js variable that has the id first and then called in instead of directly using {{ students.id }}
+
+AttributeError at /reserve/
+type object 'Student' has no attribute 'object'
+
+ValueError at /reserve/
+Field 'student_id' expected a number but got ''.
+
+tags cant write to db
+
+for student details in teachers, it should display data instead of giving you just the option to edit stuff
+
+issue with register process : 
+An invalid form control with name='p1name' is not focusable., suspicion is due to hidden divs. 
+
+Session 4 - By now I have gone through and completed all the pages, fixed all the bugs and am ready for the project to be delivered, last things left to do now is to create the requirements.txt and README.md files.

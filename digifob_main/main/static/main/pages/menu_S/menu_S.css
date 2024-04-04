@@ -69,3 +69,20 @@ body{
 .row + .row{
     margin-top: 50px;
 }
+.container .container .col .row button{
+    background-color: #16213E;
+    color: white;
+    box-shadow: none;
+    border: none;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 30px;
+    max-height: 50px;
+    min-width: 100px;
+    margin-top: 5px;
+}
+.container .container .col .row button:hover{
+    background-color: white;
+    color: #16213E;
+}

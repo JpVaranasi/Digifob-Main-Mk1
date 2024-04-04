@@ -1,0 +1,161 @@
+{% load static %}
+{% load tags %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'main/pages/scanNow/scanNow.css' %}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.7/html5-qrcode.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="nav-back"><a href="#" onclick="event.preventDefault(); window.history.back();">←</a></div>
+        <center>
+        <p class="title">Student's Hub</p>
+        </center>
+        <main>
+            <div class="col">
+                <center>
+                <div id="reader"></div>
+                <div id="result"></div>
+                </center>
+                <div id="returned-data"></div>
+                <div id="menu">
+                    <div class="container">
+                    {% block content %}
+                    {% get_menu as menu %}
+                    {% for item in menu %}
+                    <div class="col">
+                        <div class="row">
+                            <div class="row2">{{ item.item_name }}</div>
+                            <div class="row2">{{ item.price }}</div>
+                            <div class="row2">{{ item.ingredients }}</div>
+                            <div class="row2">{{ item.dietary_information}}</div>
+                            <div class="row2">  <button class="add" onclick="addToCart('{{item.menu_id}}', '{{ item.price}}' , '{{ item.item_name}}')">Add to Cart</button></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endblock %}
+                </div>
+                </div>
+            </div>
+        
+        </main>
+        <center>
+            <div id="cart">
+                <div class="col">
+                    <div class="row">
+                        <ul id="cart-items"></ul>
+                        <div>Total: £<span id="total">0</span></div>
+                    </div>
+                    <button onclick="submitOrder()">Submit Order</button>
+                </div>
+            </div>
+        </center>
+        <script>
+            let studentID = null;
+            function sendDecodedTextToServer(decodedText) {
+                studentID = decodedText;
+                $.ajax({
+                    url: '/process_qr_code/',
+                    type: 'POST',
+                    data: {
+                        'decoded_text': decodedText,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            console.log('Decoded text processed successfully');
+                            document.getElementById('returned-data').textContent = response.message;
+                            document.getElementById('menu').style.display = 'block';
+                            document.getElementById('cart').style.display = 'block';
+                        } else {
+                            console.log('Error processing decoded text');
+                        }
+                    },
+                    error: function() {
+                        console.log('Error sending data to server');
+                    }
+                });
+            }
+
+            const html5QrCode = new Html5Qrcode("reader");
+            const config = {
+                fps:  20, // Adjust the frame rate to find the best balance between speed and resource usage
+                qrbox: { width:  250, height:  250 }, // Consider increasing the size if the QR code is large
+            };
+            
+            html5QrCode.start({ facingMode: "environment" }, config,   
+                (decodedText, decodedResult) => {
+                    sendDecodedTextToServer(decodedText);
+                    html5QrCode.stop();
+                },
+                (errorMessage) => {
+                    console.error(errorMessage);
+                }
+            );
+            
+        </script>
+        <script>
+            let cartItems = [];
+            const max = 15;
+            function addToCart(menu_id, price , name)  {
+                let currentTotal = cartItems.reduce((total, item) => total + item.price, 0);
+
+                // Check if adding this item would exceed the maximum spending limit
+                if (currentTotal + parseFloat(price) > max) {
+                    alert("Cannot add this item. It would exceed the maximum spending limit.");
+                    return; // Exit the function without adding the item
+                }
+
+                cartItems.push({ id: menu_id, price: parseFloat(price) , name: name });
+                updateCart();
+            }
+          
+            function updateCart() {
+              const cartItemsElement = document.getElementById('cart-items');
+              const totalElement = document.getElementById('total');
+          
+              cartItemsElement.innerHTML = '';
+              let total = 0;
+          
+              cartItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - £${item.price.toFixed(2)}`;
+                cartItemsElement.appendChild(li);
+                total += item.price;
+              });
+          
+              totalElement.textContent = total+'.00';
+            }
+          
+            function submitOrder() {
+                if (!confirm('Are you sure you want to submit this order?')) {
+            return; // Exit the function if the user cancels
+        }
+
+        // Send AJAX request to submit the order
+        fetch('/submit_order/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}', // Ensure CSRF token is included
+            },
+            body: JSON.stringify({ cart_items: cartItems, student_id: studentID }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Order submitted successfully!");
+                cartItems = []; // Clear the cart after submitting order
+                updateCart();
+            } else {
+                alert("Failed to submit order. Please try again.");
+            }
+        })
+        .catch(error => {
+            console.log('Error:', error);
+            alert("An error occurred while submitting the order.");
+        });
+    }          
+    </script>
+    </body>
+</html>

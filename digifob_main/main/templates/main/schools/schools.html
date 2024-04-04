@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <html>
     <head>
         <link rel="stylesheet" href="{% static 'main/schools/schools.css' %}">
@@ -8,8 +9,15 @@
     <body>
         <div class="nav-back"><a href= "{% url 'index' %}">←</a></div>
         <center>
-        <p class="title">School's Hub</p>
+        <p class="title">Teacher's Hub</p>
         </center>
+        <center>
+            <a href="{% url 'scanNow' %}">
+                <div class="Scan-now">
+                    <p>Scan Now</p>
+                </div>
+            </a>
+        </center>  
         <div class="container">
             <div class="nav row">
                 <div class="box-1 row">
@@ -73,7 +81,31 @@
                         </center>
                     </div>
                 </div>
-            </div>  
+            </div> 
+            <div class="nav2 row2">
+                <center>
+                <div class="box-1 row">
+                    <div class="col">
+                        <div class="box-3-title"><a href="{% url 'manage(S)' %}">Manage Accounts</a></div>
+                        <div class="box-3-desc">
+                            <p>A final destination to manage the whole system.</p>
+                        </div>
+                        <center>
+                        <div class="ext-container">
+                            <div class="circle"></div>
+                            <a href="{% url 'manage(S)' %}">
+                            <div class="arrows">
+                                <span class="ext_arrows arrow_one"></span>
+                                <span class="ext_arrows arrow_two"></span>
+                                <span class="ext_arrows arrow_three"></span>
+                            </div>
+                            </a>
+                        </div>
+                        </center>
+                    </div>
+                </div>
+                </center>
+            </div> 
         </div>
     </body>
 </html>

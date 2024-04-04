@@ -55,10 +55,12 @@ a{
 .col{
     display: flex;
     flex-direction: column;
+
 }
 .row{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 .row + .row{
     margin-left: 150px;
@@ -286,4 +288,19 @@ a{
     border: white 4px solid;
     position: relative;
     top: 27.5px;
+}
+.nav2{
+    margin: 50 auto;
+    justify-content: center;
+}
+.row2{
+    display: flex;
+    flex-direction: row;
+}
+.scan-now{
+    padding: 5px 40px;
+    background-color: #0F3460;
+    width: fit-content;
+    border-radius: 30px;
+    margin: 20px;
 }

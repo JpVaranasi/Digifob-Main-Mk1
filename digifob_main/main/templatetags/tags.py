@@ -7,11 +7,14 @@ from django.contrib import messages
 register = template.Library()
 
 @register.simple_tag
-def register_post(name, email, password, role):
-    if role == 'teacher':
-        Teacher.objects.create(name=name, email=email, password=password) 
-    if role == 'student':
-        Student.objects.create(name=name, email=email, password=password) 
+def register_post(name, dob , gender,email, password,number,address,p_email, role ,p1_number,p2_name,p2_address,p2_email,p2_password,p2_number):
+   if role == 'teacher':
+      Teacher.objects.create(name=name, email=email, password=password) 
+   if role == 'student':
+      Student.objects.create(name=name, email=email, password=password , gender = gender, phone_number = number , dob = dob , address = address , parent = Parent.objects.get(parent_1_email = p_email) , school = School.objects.get(name = 'St Cyres')) 
+   if role == 'parent':
+      Parent.objects.create(parent_1_name = name , parent_1_email = email, password1 = password, parent_1_phone = p1_number , parent_1_address = address , parent_2_name = p2_name , parent_2_email = p2_email , password2 = p2_password , parent_2_phone = p2_number, parent_2_address = p2_address)
+    
 @register.simple_tag
 def view_data(student_id):
     try:
@@ -40,12 +43,6 @@ def get_menu():
       x.append(i)
    return x
 
-@register.simple_tag
-def get_balance():
-   x = []
-   for i in Balance.objects.all():
-      x.append(i)
-   return x
 
 @register.simple_tag
 def get_date():
@@ -78,3 +75,13 @@ def get_sDetails():
       x.append(i)
    return x
 
+@register.simple_tag
+def process_cart(cart,student):
+   try:
+      stud = Student.objects.get(student_id = student)
+      crt = Menu.objects.get(menu_id = cart)
+      stud.reserves = crt.item_name
+      print("std :" + stud.reserves + " std name:" + stud.name)
+   except Exception as e:
+      print(e)
+   
