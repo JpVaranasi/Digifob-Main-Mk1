@@ -11,18 +11,18 @@ Schools can also effectively do the same as parents but with additional features
 
 ## Setting up
 To set up this project, I highly reccommend using a python virtual environment which can be created by the command 
-''' python.exe -m venv venv '''
+``` python.exe -m venv venv ```
 followed by 
-''' .\venv\Scripts\Activete '''
+``` .\venv\Scripts\Activete ```
 
 To install the required libraries I have added a requirements.txt file, to use the file use the command 
-''' pip install -r requirements. txt '''
+``` pip install -r requirements. txt ```
 
 After this you should be ready to start the server.
 First you would have locate manage.py, to do this use the command
-''' cd .\digifob_main\ '''
+``` cd .\digifob_main\ ```
 followed by
-''' python.exe manage.py runserver '''
+``` python.exe manage.py runserver ```
 
 This would take a minute and load up the server for you to use, within the cmd/terminal it will aso give you the link to the home page.
 
@@ -31,28 +31,32 @@ Visiting the hyperlink will take you to the index page, which ask for login user
 The preloaded usernames and passwords are listed below.
 
 Students : 
-
+```
 Alex : alex@stcyres.org , pwd : Alex123
 Ron : ron@stcyres.org , pwd : Ron123
 Clyde : clyde@stcyres.org, pwd : Clyde123
 Trial : trial@stcyres.org , pwd : Trial
-
+```
 Teachers : 
-
+```
 Jack : jack@stcyres.org , pwd : SnottyJack
-
+```
 Parents :
-
+```
 Alex's parents:
 Parent 1 : Alexparent@gmail.com , pwd : AlexParent1
 Parent 2 : Alexparent2@gmail.com , pwd : AlexParent2
-
+```
 Admin :
+```
 Username : admin
 Email : admin@admin.com
 Password : root
-
+```
 If the admin causes issues , feel free to create an admin account using 
-''' python.exe manage.py createsuperuser '''
 
+
+```
+python.exe manage.py createsuperuser 
+```
 For any other issues, feel free to contact 2010jpvaranasi@stcyres.org
